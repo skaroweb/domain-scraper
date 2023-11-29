@@ -43,9 +43,13 @@ const FilteredDataListNew = ({ currentItems, filteredData }) => {
           {currentItems.map((item, index) => (
             <div className="filteredData_main" key={index}>
               <div className="filteredData_list">{item.domain_name}</div>
-              <div className="filteredData_list">{item.create_date}</div>
               <div className="filteredData_list">
-                {item.domain_registrar_name}
+                {/* {item.create_date} */}
+                2023-11-29
+              </div>
+              <div className="filteredData_list">
+                {/* {item.domain_registrar_name} */}
+                GoDaddy.com
               </div>
             </div>
           ))}
