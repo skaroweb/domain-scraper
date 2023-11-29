@@ -1,0 +1,19 @@
+.hero-wrapper {
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  color: #fff;
+  background-size: cover;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 80, 0.5),
+      rgba(80, 50, 80, 0.75),
+      rgba(0, 0, 80, 0.5)
+    ),
+    url("/public/assets/img/tech.jpg");
+  padding: 20px;
+}
+.herobox h1 {
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
+}
