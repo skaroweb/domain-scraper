@@ -1,3 +1,5 @@
+import ExcelReport from "./ExcelReport";
+
 const FilteredDataListNew = ({ currentItems, filteredData }) => {
   const formatIndianNumber = (num) => {
     // Convert the number to a string
@@ -29,9 +31,13 @@ const FilteredDataListNew = ({ currentItems, filteredData }) => {
 
   return (
     <div className="filteredDataListNew">
-      <p>
-        <strong>{`${filteredData.length} domains found`}</strong>
-      </p>
+      <div className="domain_found">
+        <div className="domain_found_count">
+          <strong>{`${filteredData.length} domains found`}</strong>
+        </div>
+        <ExcelReport items={filteredData} />
+      </div>
+
       {currentItems.length > 0 && (
         <div className="filteredData_ul">
           <div className="filteredData_main">
@@ -43,13 +49,9 @@ const FilteredDataListNew = ({ currentItems, filteredData }) => {
           {currentItems.map((item, index) => (
             <div className="filteredData_main" key={index}>
               <div className="filteredData_list">{item.domain_name}</div>
+              <div className="filteredData_list">{item.create_date}</div>
               <div className="filteredData_list">
-                {/* {item.create_date} */}
-                2023-11-29
-              </div>
-              <div className="filteredData_list">
-                {/* {item.domain_registrar_name} */}
-                GoDaddy.com
+                {item.domain_registrar_name}
               </div>
             </div>
           ))}

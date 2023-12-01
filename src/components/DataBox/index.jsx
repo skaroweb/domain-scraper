@@ -85,12 +85,13 @@ const DataBox = ({ Apiurljson, design }) => {
 
             filteredData = filteredData.filter(
               (item) =>
-                item.domain_name && regex.test(item.sitename.toLowerCase())
+                item.domain_name && regex.test(item.domain_name.toLowerCase())
             );
           }
 
           // Set the filtered data in the state
           setFilteredData(filteredData);
+          setCurrentPage(0);
         })
         .catch((error) => {
           console.error("Error fetching data:", error.message);
@@ -108,7 +109,7 @@ const DataBox = ({ Apiurljson, design }) => {
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
     // Scroll to the top of the table
-    const tableContainer = document.querySelector(".filteredData_ul");
+    const tableContainer = document.querySelector(".domain_found");
     if (tableContainer) {
       // Use smooth behavior for a smooth scrolling effect
       tableContainer.scrollIntoView({ behavior: "smooth" });

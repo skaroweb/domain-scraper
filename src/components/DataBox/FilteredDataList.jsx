@@ -1,3 +1,5 @@
+import ExcelReport from "./ExcelReport";
+
 const FilteredDataList = ({ currentItems, filteredData }) => {
   const formatIndianNumber = (num) => {
     // Convert the number to a string
@@ -29,9 +31,12 @@ const FilteredDataList = ({ currentItems, filteredData }) => {
 
   return (
     <div>
-      <p>
-        <strong>{`${filteredData.length} domains found`} </strong>
-      </p>
+      <div className="domain_found">
+        <div className="domain_found_count">
+          <strong>{`${filteredData.length} domains found`}</strong>
+        </div>
+        <ExcelReport items={filteredData} />
+      </div>
       {currentItems.length > 0 && (
         <div className="filteredData_ul">
           {currentItems.map((item, index) => (
