@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./index.css";
 import FilteredDataList from "./FilteredDataList";
 import FilteredDataListNew from "./FilteredDataListNew";
+
 import DataboxAll from "./DataboxAll";
 import ReactPaginate from "react-paginate";
 
@@ -98,7 +101,10 @@ const DataBox = ({ Apiurljson, design }) => {
         });
     } else {
       // Inform the user that at least three characters are required
-      alert(
+      // alert(
+      //   "Please enter at least three characters in Starts With, Contains, Ends With, or Has Distinct Word before filtering."
+      // );
+      toast.warn(
         "Please enter at least three characters in Starts With, Contains, Ends With, or Has Distinct Word before filtering."
       );
     }
@@ -120,54 +126,68 @@ const DataBox = ({ Apiurljson, design }) => {
   const currentItems = filteredData.slice(offset, offset + itemsPerPage);
 
   return (
-    <div className="container">
-      <div className="databox-container">
-        <DataboxAll
-          setStartsWith={setStartsWith}
-          setContains={setContains}
-          setEndsWith={setEndsWith}
-          setHasDistinctWord={setHasDistinctWord}
-          setInputEnter={setInputEnter}
-        />
-      </div>
-      <div className="databox_cta">
-        <button onClick={handleShowDataClick}>Show the domains</button>
-        {/* <button>Show the domains</button> */}
-      </div>
-      {/* Render or use the filtered data only if showFilteredData is true */}
-      {filteredData.length > 0 ? (
-        <>
-          {design === "FilteredDataList" && (
-            <FilteredDataList
-              currentItems={currentItems}
-              filteredData={filteredData}
-            />
-          )}
-          {design === "FilteredDataListNew" && (
-            <FilteredDataListNew
-              currentItems={currentItems}
-              filteredData={filteredData}
-            />
-          )}
+    <>
+      <div className="container">
+        <div className="databox-container">
+          <DataboxAll
+            setStartsWith={setStartsWith}
+            setContains={setContains}
+            setEndsWith={setEndsWith}
+            setHasDistinctWord={setHasDistinctWord}
+            setInputEnter={setInputEnter}
+          />
+        </div>
+        <div className="databox_cta">
+          <button onClick={handleShowDataClick}>Show the domains</button>
+          {/* <button>Show the domains</button> */}
+        </div>
+        {/* Render or use the filtered data only if showFilteredData is true */}
+        {filteredData.length > 0 ? (
+          <>
+            {design === "FilteredDataList" && (
+              <FilteredDataList
+                currentItems={currentItems}
+                filteredData={filteredData}
+              />
+            )}
+            {design === "FilteredDataListNew" && (
+              <FilteredDataListNew
+                currentItems={currentItems}
+                filteredData={filteredData}
+              />
+            )}
 
-          {pageCount > 1 && (
-            <ReactPaginate
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
-              pageCount={pageCount}
-              onPageChange={handlePageClick}
-              containerClassName={"pagination"}
-              previousLinkClassName={"pagination__link"}
-              nextLinkClassName={"pagination__link"}
-              disabledClassName={"pagination__link--disabled"}
-              activeClassName={"pagination__link--active"}
-            />
-          )}
-        </>
-      ) : allData.length > 0 ? (
-        <p>No found</p>
-      ) : null}
-    </div>
+            {pageCount > 1 && (
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={pageCount}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
+              />
+            )}
+          </>
+        ) : allData.length > 0 ? (
+          <p>No found</p>
+        ) : null}
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 };
 

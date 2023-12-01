@@ -207,3 +207,6 @@ div.filteredData_list {
 .domain_found_count {
   font-size: 20px;
 }
+.Toastify__toast-container {
+  width: 58% !important;
+}
